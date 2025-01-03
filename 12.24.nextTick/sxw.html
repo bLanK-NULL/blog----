@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上下文</title>
+</head>
+<body>
+    <script>
+        const obj1 = {
+            name: 'obj1',
+            say() {
+                console.log(this.name+' say')
+            }
+        }
+        const obj2 = {
+            name: 'obj2'
+        }
+
+        obj1.say.bind(obj2)() //obj2 say
+        console.log(obj2.say); //undefined
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            position: relative;
+            height: 250px;
+            /* text-align: center; */
+            perspective: 2000px;
+            transform-style: preserve-3d;
+        }
+
+        img {
+            height: 100%;
+            /* transition: all 0.2s; */
+        } 
+        .cli {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: .5;
+            transition: all .2s;
+            
+        }
+        .cli +.cli {
+            opacity: .2;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="./asset/4.jpg" alt="" id="rImg">
+        <img src="./asset/4.jpg" alt="" id="rImg2" class="cli">
+        <img src="./asset/4.jpg" alt="" id="rImg3" class="cli">
+
+    </div> 
+
+</body>
+<script>
+    window.onload = function () {
+        let img = document.querySelector('#rImg')
+        let img2 = document.querySelector('#rImg2')
+        let img3 = document.querySelector('#rImg3')
+        let div = document.querySelector('div')
+
+        // let a = img.getBoundingClientRect()
+        //获得图片中心点坐标
+        const midX = img.offsetLeft + img.clientWidth / 2
+        const midY = img.offsetTop + img.clientHeight / 2
+
+        const maxDeg = 40;//最大旋转角度 
+        const maxWidth = div.clientWidth / 2 //半边最大宽度
+        const maxHeight = div.clientHeight / 2
+
+        // console.log(getComputedStyle(img).width);
+
+        div.addEventListener('mousemove', function (event) {
+            //鼠标相对于中心坐标
+            let cursorX = event.clientX - midX
+            let cursorY = event.clientY - midY
+
+            //绕Y轴
+            let degX = maxDeg * (cursorY) / maxHeight
+            let degY = maxDeg * (cursorX) / maxWidth
+
+            console.log(cursorX, maxWidth);
+
+            img.style.transform = `rotate3d(0,1,0,${degY}deg) rotate3d(1,0,0,${-degX}deg)`
+            // img.style.transform = `rotate3d(0,1,0,${degY}deg) `
+            img2.style.transform = `rotate3d(0,1,0,${degY}deg) rotate3d(1,0,0,${-degX}deg)`
+            img3.style.transform = `rotate3d(0,1,0,${degY}deg) rotate3d(1,0,0,${-degX}deg)`
+        })
+    }
+</script>
+
+</html>

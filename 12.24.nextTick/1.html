@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function nextTick(fn) {
+            return Promise.resolve().then(fn);
+        }
+        function nt () {
+            return Promise.resolve()
+        }
+        console.log('1')
+        nt().then(()=> {console.log('hello')})
+        console.log('2')
+    </script>
+</body>
+</html>

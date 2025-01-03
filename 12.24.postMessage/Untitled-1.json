@@ -1,0 +1,46 @@
+{
+  "leftChildren": [
+    {
+      "parent": "root",
+      "children": [],
+      "id": "181a4581484b69ae",
+      "title": "分支主题"
+    }
+  ],
+  "children": [
+    {
+      "parent": "root",
+      "children": [
+        {
+          "id": "5033f00beac1991d",
+          "parent": "d4eab36a88e89d86",
+          "children": [],
+          "title": "111"
+        },
+        {
+          "id": "2aad21d71e1baf57",
+          "parent": "d4eab36a88e89d86",
+          "children": [
+            {
+              "id": "d664cf49d021bd4a",
+              "parent": "2aad21d71e1baf57",
+              "children": [],
+              "title": "333"
+            }
+          ],
+          "title": "222"
+        }
+      ],
+      "id": "d4eab36a88e89d86",
+      "title": "分支主题"
+    }
+  ],
+  "root": true,
+  "theme": "theme3",
+  "showWatermark": false,
+  "id": "root",
+  "title": "未命名文件",
+  "version": 77,
+  "structure": "mind_free",
+  "summaries": []
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./MutationObserver.js" defer></script>
+    <script src="./IntersectionObserver.js" defer></script>
+    <style>
+ 
+        body {
+            height: 2000px;
+        }
+        h1 {
+            box-sizing: border-box;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>MutationObserver</h1>
+    <ul>
+        <li><input type="text" value="1"  ></li>
+        <li><input type="text" value="2"  ></li>
+        <li><input type="text" value="3"  ></li>
+    </ul>
+    <button>增加 li</button>
+    <hr>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button class="tBtn" ">增加textarea属性</button>
+    <hr>
+    <div class="content">default content</div>
+    <button class="divBtn">修改值,通过innerHtml</button>
+    <hr>
+
+    <h1 class="intersectionH1">IntersectionObserver</h1>
+</body>
+</html>

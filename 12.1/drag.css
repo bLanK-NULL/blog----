@@ -1,0 +1,36 @@
+:root {
+    --box-width: 120px;
+    --box-height: 80px;
+    --box-gap: 10px;
+}
+
+button {
+    border: none;
+    outline: none; 
+}
+
+.container {
+    display: grid; 
+    width: 380px;
+    grid-template-rows: repeat(3, var(--box-height));
+    grid-template-columns: repeat(3, var(--box-width));
+    grid-template-areas: 'a a a' 'b b b' 'c c c';
+    gap: var(--box-gap);
+    /* margin: 0 auto; */
+}
+
+.container>div {
+    position: relative;
+    border: 1px solid #ccc;
+    justify-content: center;
+}
+
+.btn {
+    width: var(--box-width);
+    height: var(--box-height);
+    background-color: aqua;
+}
+.dragArea {
+    background-color: #ccc;
+    margin-bottom: 20px;
+}

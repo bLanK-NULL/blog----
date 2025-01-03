@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1000" height="1000"></canvas>
+</body>
+<script>
+
+    function drawBezierCurve(parentNode, childNode) {
+        // 获取canvas元素和上下文
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // 开始新的路径
+        ctx.beginPath();
+
+        // 移动到父节点的位置
+        ctx.moveTo(parentNode.x, parentNode.y);
+
+        // 计算控制点的坐标
+        const controlPoint1 = {
+            x: (parentNode.x + childNode.x) / 2,
+            y: parentNode.y
+        };
+
+        const controlPoint2 = {
+            x: (parentNode.x + childNode.x) / 2,
+            y: childNode.y
+        };
+
+        // 绘制贝塞尔曲线
+        ctx.bezierCurveTo(controlPoint1.x, controlPoint1.y, controlPoint2.x, controlPoint2.y, childNode.x, childNode.y);
+
+        // 描绘路径
+        ctx.stroke();
+    }
+    drawBezierCurve({
+        x: 0,
+        y: 0,
+    }, {
+        x: 200,
+        y: 60
+    })
+</script>
+
+</html>

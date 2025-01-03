@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片懒加载</title>
+    <style>
+        .container {
+            height: 2000px;
+            background-color: antiquewhite;
+        }
+
+        img {
+            width: 500px;
+            height: 500px;
+        }
+
+        .more {
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>图片懒加载</h1>
+    <div class="container"></div>
+    <div class="box">
+        <div>
+            <img src="./imgs/向日葵.jpeg" alt="" data-src="./imgs/gate.jpg">
+        </div>
+        <div>
+            <img src="./imgs/向日葵.jpeg" alt="" data-src="./imgs/gate.jpg">
+        </div>
+    </div>
+
+    <div class="more"> 加载更多</div>
+    <script>
+        const img = document.querySelector('img')
+        const more = document.querySelector('.more')
+        const box = document.querySelector('.box')
+        const ob = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // console.log(entry);
+                if (entry.isIntersecting) {
+                    console.log(entry)
+                    img.setAttribute('src', img.getAttribute('data-src'))
+                }
+            })
+        }, {
+            rootMargin: '0px 0px 100px 0px'
+            // threshold: 0.5
+        })
+        ob.observe(img)
+
+        const ob2 = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { 
+                    let node = box.lastElementChild.cloneNode(true)
+                    box.appendChild(node)
+                }
+            })
+        },{
+            threshold: 1
+        })
+        ob2.observe(more)
+    </script>
+</body>
+
+</html>

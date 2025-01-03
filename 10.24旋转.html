@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            perspective: 2000px;
+            perspective-origin: center;
+            transform-style: preserve-3d;
+            padding-left: 100px;
+            height: 2000px;
+        }
+
+        .container {
+            /* width: 950px;
+            height: 600px; */
+            box-sizing: border-box;
+            width: 400px;
+            height: 400px;
+            background: url(./asset/1.jpg);
+
+            /* transform-origin: center; */
+            /* margin: 100px; */
+        }
+
+        .blowUp {
+            transition: scale .4s ease;
+        }
+
+        .blowUp:hover {
+            scale: 1.1;
+
+        }
+
+        p {
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>asdasdsad</p>
+    <div class="container blowUp shadowUp">
+    </div>
+    <script>
+        let div = document.querySelector('.container')
+
+        div.addEventListener('mousemove', function (e) {
+            const rect = div.getBoundingClientRect()
+            let centerX = rect.left //相对于视口左边的坐标
+            let centerY = rect.top
+            //鼠标相对于中心的坐标 = 鼠标相对视口坐标-盒子相对视口坐标-盒子一半宽
+            let cursorX = e.clientX - centerX - rect.width / 2
+            let cursorY = e.clientY - centerY - rect.height / 2
+            console.log(cursorX, cursorY);
+            //修改转换中心
+            div.style.transform = `rotate3d(${cursorY}, ${-cursorX}, 0, -20deg)`
+
+            let YreferToBox = e.clientY - centerY
+            //亮度在0.8-1.2之间， 根据鼠标相对盒子Y坐标变化
+            let light = -(1.2 - 0.8) / div.offsetHeight * YreferToBox + 1.2
+            console.log(light);
+            div.style.filter = `brightness(${light}) drop-shadow(0 0 0.75rem )`
+        })
+        div.addEventListener('mouseout', function (e) {
+            div.style.transform = `rotate3d(0,0,0,0)`
+            div.style.filter = `brightness(1)`
+        })
+    </script>
+</body>
+
+</html>

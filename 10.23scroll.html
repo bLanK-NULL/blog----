@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            height: 2000px;
+        }
+
+        ul {
+            /* 以下两行实现：横向换行 */
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: 0;
+            transition: all .3s;
+        }
+
+        /* 隐藏水平滚动条  */
+        ul::-webkit-scrollbar {
+            /* height: 0; */
+        }
+
+        li {
+            list-style: none;
+            box-sizing: border-box;
+            display: inline-block;
+            height: 150px;
+            width: 250px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>title</h1>
+    <p style="height: 120px;">实现了鼠标放到ul里时,静止垂直滚动改为水平滚动</p>
+    <div>
+        <ul class="scroll">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+        </ul>
+    </div>
+    <script src="debounce.js"></script>
+    <script>
+        let div = document.querySelector('div')
+        let ul = document.querySelector('ul')
+        let li = document.querySelectorAll('ul li')
+        function cancelWheel(e) {
+            e.preventDefault()
+        }
+        // console.log(li);
+        // window.addEventListener('scroll', function (e) {
+        //     // 需要横向滚动的元素 已经滚到了顶部了,
+        //     if (window.scrollY > li[0].offsetTop) {
+
+        //     }
+        // })
+        //鼠标放到ul里时
+        ul.addEventListener('mouseover', function (e) {
+            //禁止滚轮事件
+            document.addEventListener('wheel', cancelWheel, { passive: false })
+
+            ul.addEventListener('wheel', function (e) {
+                // let left = -e.wheelDelta || e.deltaY / 2;
+                // console.log('wheelDelta:', -e.wheelDeltaY, "deltaY :", e.deltaY);
+                debounce(function (e) {
+                    ul.scrollLeft += e.deltaY;
+                    console.log(ul.scrollLeft)
+                }, 100, e)
+            })
+        })
+        ul.addEventListener('mouseout', function () {
+            document.removeEventListener('wheel', cancelWheel)
+        })
+    </script>
+</body>
+
+</html>

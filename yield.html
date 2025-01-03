@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function* generatorFn() {
+        //     yield 'a'
+        //     yield 'b'
+        //     return '0'
+        // }
+        // const g = generatorFn();
+        // // console.log(g.next())
+        // // console.log(g.next())
+        // // console.log(g.next()) 
+        // for (const x of generatorFn()) {
+        //     console.log(x)
+        // }
+
+        // function * generatorFn(initial) {
+        //     console.log(initial);
+        //     console.log(yield);
+        //     console.log(yield); 
+        // }
+        // const g = generatorFn('initial')
+        // g.next('a')     //initial ,不会输出a
+        // g.next('b')     //b
+        // g.next('c')     //c
+
+        // function * generatorFn() {
+        //     return yield 'foo'
+        // }
+        // const g = generatorFn()
+        // console.log(g.next());
+        // console.log(g.next('x00'));
+
+        class Foo {
+            constructor() {
+                this.value = [1, 2, 3]
+            }
+            *[Symbol.iterator]() {
+                yield* this.value
+            }
+        }
+        for (let f of new Foo()) {
+            console.log(f)
+        }
+    </script>
+</body>
+
+</html>

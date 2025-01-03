@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ceshi1.5</title>
+</head>
+
+<body>
+    <script>
+        /*
+        BroadcastChannel.postMessage(message) ≠ window.postMessage(message,targetOrigin, [transfer])
+        [消息]: 任何对象 
+        [哪些窗口可以接收到]: '' 
+        [传递的参数]: 这个参数会被转移，在这个上下文无法接受消息(仍然可以打印出来)，另一边e.ports[0]来接收这个参数
+        */
+
+
+        const { port1, port2 } = new MessageChannel();
+
+        port2.onmessage = function (e) {
+            const receivedPort2 = e.ports[0];
+            console.log(receivedPort2);// undefined
+        };
+        port1.postMessage('message from port1');
+    </script>
+</body>
+
+</html>

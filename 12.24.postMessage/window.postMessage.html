@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window.postmessage</title>
+</head>
+
+<body>
+    <iframe src="./iframe.html">
+    </iframe>
+    <script>
+        const ifr = document.querySelector('iframe')
+        ifr.onload = function () {
+            ifr.contentWindow.postMessage('hello', "*")
+        }
+    </script>
+</body>
+
+</html>

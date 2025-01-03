@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            height: 250px;
+            text-align: center;
+            /* perspective: 200px; */
+            transform-style: preserve-3d;
+        }
+
+        img {
+            height: 100%;
+        }
+
+        img:hover {
+            /* transform: rotate3d(1, 1, 1, -25deg); */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="./asset/4.jpg" alt="" id="rImg">
+    </div>
+    <script>
+        let img = document.querySelector('#rImg')
+        let div = document.querySelector('div')
+
+        let dept = 12; //深度
+        const maxRad = Math.PI / 3 // 60°
+        // let a = img.getBoundingClientRect()
+
+        //获得中心点坐标
+        let midX = img.offsetLeft + img.clientWidth / 2
+        let midY = img.offsetTop + img.clientHeight / 2
+
+        div.addEventListener('mousemove', function (event) {
+            //鼠标相对于中心坐标
+            let cursorX = event.clientX - midX
+            let cursorY = event.clientY - midY
+
+            let aaa = (div.clientWidth / 2 - Math.abs(cursorX)) / (div.clientWidth / 2)
+            let bbb = (div.clientHeight / 2 - Math.abs(cursorY)) / (div.clientHeight / 2)
+
+            //绕Y轴
+            let radY = Math.atan(dept / cursorX) * bbb /2
+            let radX = Math.atan(dept / cursorY) * aaa /2
+
+
+            img.style.transform = `rotate3d(0,1,0,${radY}rad) rotate3d(1,0,0,${-radX}rad)`
+
+
+
+            console.log(aaa, bbb);
+        })
+
+    </script>
+</body>
+
+</html>

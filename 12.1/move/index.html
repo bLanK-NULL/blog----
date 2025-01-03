@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            outline: none;
+            border: none;
+        }
+
+        .container {
+            width: 100%;
+            height: 2000px;
+            background-color: azure;
+            margin: 100px;
+        }
+
+        .dragbtn {
+            position: relative;
+            left: 0;
+            top: 0;
+            font-size: 1em;
+            width: 120px;
+            height: 60px;
+            background-color: aquamarine;
+            border-radius: 4px;
+            /* transition-property: width, height, font-size;
+            transition-duration: 0.5s;
+            transition-timing-function: ease; */
+            transition: none 0.5s ease;
+            transition-property: width, height, font-size, left, top,box-shadow;
+        }
+
+        .draged:hover {
+            width: 131px;
+            height: 66px;
+            font-size: 1.1em;
+            cursor: grab;
+            left: -5px;
+            top: -3px;
+            box-shadow: 0 0 5px 2px  rgba(0, 0, 0, 0.2);
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <button class="dragbtn draged">
+                drag me
+            </button>
+        </div>
+    </div>
+    <script>
+        const controller = new AbortController();
+        const btn = document.querySelector('.dragbtn')
+
+        let btnX = 0;
+        let btnY = 0;
+        let mousemoveListener = null;
+        const mousemoveHandler = (e) => {
+            console.log('mousemove movementX', e.movementX)
+            btnX += e.movementX
+            btnY += e.movementY
+            btn.style.transform = `translate(${btnX}px, ${btnY}px)`
+        }
+        btn.addEventListener('mousedown', (e) => {
+            console.log(e)
+            btn.style.cursor = 'grabbing'
+            window.addEventListener('mousemove', mousemoveHandler)
+        })
+        btn.addEventListener('mouseup', (e) => {
+            console.log('mouseup...')
+            btn.style.cursor = 'grab'
+            window.removeEventListener('mousemove', mousemoveHandler)
+        })
+    </script>
+</body>
+
+</html>
